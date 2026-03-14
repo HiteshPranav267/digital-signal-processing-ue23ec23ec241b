@@ -1,0 +1,28 @@
+%linear convolution using dft & idft
+clear all;
+clc;
+x = input('Enter the 1st sequence: ');
+h = input('Enter the 2nd sequence: ');
+N = length(x) + length(h) -1;
+X = fft(x,N);
+H = fft(h,N);
+Y = X.*H;
+y = ifft(Y);
+figure;
+subplot(3,1,1);
+stem(0:length(x)-1,x);
+xlabel('Time');
+ylabel('Amplitude');
+title('1st sequence');
+subplot(3,1,2);
+stem(0:length(h)-1,h);
+xlabel('Time');
+ylabel('Amplitude');
+title('2nd sequence');
+subplot(3,1,3);
+stem(0:N-1,real(y));
+xlabel('Time');
+ylabel('Amplitude');
+title('Linear Convolution');
+disp('Linear Convolution');
+disp(real(y));
